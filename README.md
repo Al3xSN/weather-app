@@ -1,5 +1,7 @@
 # Welcome to the weather app
 
+## Always do `git pull` before commit
+
 ## How to upload
 
 1. Add all files to: `git add .`

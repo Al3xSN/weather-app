@@ -21,96 +21,88 @@
   <body>
     <header>
       <div class="container box">
-          <div class="row">
+        <div class="row">
+          <!-- Main column -->
+          <div class="col-12 col-sm-8">
+            <h6 class="logo">the.weather</h6>
+            <img class="image" src="/resources/ballon.svg" alt="baloon image" />
 
-            <!-- Main column -->
-            <div class="col-12 col-sm-8">
-              <h6 class="logo">the.weather</h6>
-              <img
-                class="image"
-                src="/resources/ballon.svg"
-                alt="baloon image"
-              />
-              
-              <div class="row weather-section">
-                <div class="col-sm-4">
-                  <div class="first">
-                    <p class="temperature">26°</p>
-                  </div>
+            <div class="row weather-section">
+              <div class="col-sm-4">
+                <div class="first">
+                  <p class="temperature">26°</p>
                 </div>
-                <div class="col-sm-4">
-                  <div class="second">
-                    <p class="city">Varna</p>
-                    <p class="time">10:32 - Tuesday, 22 Oct 2021</p>
-                  </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="second">
+                  <p class="city">Varna</p>
+                  <p class="time">10:32 - Tuesday, 22 Oct 2021</p>
                 </div>
-                <div class="col-sm-4">
-                  <div class="third">
-                    <i>
-                      <ion-icon name="sunny-outline"></ion-icon>
-                    </i>
-                    <p class="type">Sunny</p>
-                  </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="third">
+                  <i>
+                    <ion-icon name="sunny-outline"></ion-icon>
+                  </i>
+                  <p class="type">Sunny</p>
                 </div>
               </div>
             </div>
-
-            <!-- Sidebar -->
-            <div class="col-12 col-sm-4">
-              <div class="search-bar">
-                <form onsubmit="event.preventDefault();" role="search">
-                  <input
-                    id="search"
-                    type="search"
-                    placeholder="Search..."
-                    autofocus
-                    required
-                  />
-                </form>
-              </div>
-
-              <div class="history-search">
-                <h6>History</h6>
-                <p>Varna</p>
-                <p>Sofia</p>
-                <p>Plovdiv</p>
-                <p>Veliko Tarnovo</p>
-              </div>
-              
-              <div class="weather-details">
-                <h6>Weather Details</h6>
-                <div class="details">
-                  <p>Cloudy <span>12%</span></p>
-                  <p>Humidity <span>78%</span></p>
-                  <p>Windy <span>1km/h</span></p>
-                  <p>Chance of rain <span>0%</span></p>
-                </div>
-              </div>
-            
-            </div> 
           </div>
 
-          <!-- Button -->
-          <div class="row">
-            <div class="col-12 center">
-              <a class="button" href="#future-weather">
-                <ion-icon name="arrow-down-outline"></ion-icon>
-              </a>
+          <!-- Sidebar -->
+          <div class="col-12 col-sm-4">
+            <div class="search-bar">
+              <form onsubmit="event.preventDefault();" role="search">
+                <input
+                  id="search"
+                  type="search"
+                  placeholder="Search..."
+                  autofocus
+                  required
+                />
+              </form>
+            </div>
+
+            <div class="history-search">
+              <h6>History</h6>
+              <p>Varna</p>
+              <p>Sofia</p>
+              <p>Plovdiv</p>
+              <p>Veliko Tarnovo</p>
+            </div>
+
+            <div class="weather-details">
+              <h6>Weather Details</h6>
+              <div class="details">
+                <p>Cloudy <span>12%</span></p>
+                <p>Humidity <span>78%</span></p>
+                <p>Windy <span>1km/h</span></p>
+                <p>Chance of rain <span>0%</span></p>
+              </div>
             </div>
           </div>
+        </div>
 
+        <!-- Button -->
+        <div class="row">
+          <div class="col-12 center">
+            <a class="button" href="#future-weather">
+              <ion-icon name="arrow-down-outline"></ion-icon>
+            </a>
+          </div>
+        </div>
       </div>
     </header>
-    
-    <img src="./resources/wave.svg" alt="">
-    
+
+    <img src="./resources/wave.svg" alt="" />
+
     <section id="future-weather">
       <div class="container">
         <div class="row">
           <h1>Days of week</h1>
-        </div>
-        <div class="row">
-          <div class="col">
+
+          <div class="col-12 col-sm-6 col-md-4 col-lg">
             <div class="box-week">
               <div class="flip-card">
                 <div class="flip-card-inner">
@@ -132,7 +124,8 @@
               </div>
             </div>
           </div>
-          <div class="col">
+
+          <div class="col-12 col-sm-6 col-md-4 col-lg">
             <div class="box-week">
               <div class="flip-card">
                 <div class="flip-card-inner">
@@ -154,7 +147,8 @@
               </div>
             </div>
           </div>
-          <div class="col">
+
+          <div class="col-12 col-sm-6 col-md-4 col-lg">
             <div class="box-week">
               <div class="flip-card">
                 <div class="flip-card-inner">
@@ -176,7 +170,8 @@
               </div>
             </div>
           </div>
-          <div class="col">
+
+          <div class="col-12 col-sm-6 col-md-4 col-lg">
             <div class="box-week">
               <div class="flip-card">
                 <div class="flip-card-inner">
@@ -198,7 +193,8 @@
               </div>
             </div>
           </div>
-          <div class="col">
+
+          <div class="col-12 col-sm-6 col-md-4 col-lg">
             <div class="box-week">
               <div class="flip-card">
                 <div class="flip-card-inner">
@@ -223,8 +219,7 @@
         </div>
       </div>
 
-      <img src="./resources/wave-reversed.svg" alt="">
-      
+      <img src="./resources/wave-reversed.svg" alt="" />
     </section>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
   </body>
