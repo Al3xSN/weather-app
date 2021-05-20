@@ -38,7 +38,7 @@ header {
 .box {
   height: 700px;
   width: 1500px;
-  overflow: hidden;
+  overflow: auto;
   border-radius: 10px;
   box-shadow: 5px 5px 10px 6px #00000036;
   background: inherit;
