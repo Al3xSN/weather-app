@@ -42,7 +42,6 @@ header {
   overflow-x: hidden;
   border-radius: 10px;
   box-shadow: 5px 5px 10px 6px #00000036;
-  background: inherit;
 }
 
 .logo {
@@ -54,7 +53,8 @@ header {
 .image {
   width: 300px;
   height: auto;
-  margin: 110px 0 0 380px;
+  float: right;
+  margin-right: 150px;
 }
 
 .weather-section {
@@ -290,7 +290,7 @@ input:not(:placeholder-shown) {
   font-size: 1.8rem;
   font-weight: 300;
   text-align: center;
-  margin-top: 60px;
+  margin-top: 65px;
 }
 
 .flip-card-front p {
@@ -331,6 +331,48 @@ input:not(:placeholder-shown) {
 /*--------------MEDIA----------------*/
 /*-----------------------------------*/
 @media only screen and (max-width: 600px) {
+  .box {
+    box-shadow: none;
+  }
+
+  .wave {
+    margin-top: -1px;
+  }
+
+  #future-weather h1 {
+    margin: 30px 0 0 0;
+  }
+
+  .col-centered {
+    float: none;
+    margin: 0 auto;
+  }
+
+  .box-week {
+    width: 250px;
+    margin: 30px auto;
+  }
+
+  .flip-card-front .day {
+    margin-top: 55px;
+  }
+
+  .flip-card-back p {
+    margin: 10px 0 0 10px;
+    font-size: 0.8rem;
+  }
+
+  .flip-card-back p:last-child {
+    margin-bottom: 10px;
+  }
+
+  .flip-card-back p:first-child {
+    margin-top: 0px;
+  }
+
+  .flip-card-back i {
+    margin: 0 110px 0 110px;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -339,9 +381,13 @@ input:not(:placeholder-shown) {
     margin: 22px 0 0 10px;
   }
 
+  .wave {
+    margin-top: -1px;
+  }
+
   .image {
     width: 180px;
-    margin: 120px 0 40px 150px;
+    margin: 100px 10px 50px 0;
   }
 
   .temperature {
@@ -381,7 +427,7 @@ input:not(:placeholder-shown) {
   }
 
   .weather-section {
-    margin-top: 90px;
+    margin-top: 100px;
   }
 
   .history-search {
@@ -430,7 +476,7 @@ input:not(:placeholder-shown) {
 
   .image {
     width: 220px;
-    margin: 110px 0 0 180px;
+    margin-right: 20px;
     padding-bottom: 30px;
   }
 
@@ -474,7 +520,13 @@ input:not(:placeholder-shown) {
   }
 
   .center {
-    margin-top: 30px;
+    margin-top: 20px;
+  }
+
+  .flip-card-back p {
+    font-weight: 400;
+    margin-top: 15px;
+    font-size: 1rem;
   }
 }
 
@@ -495,7 +547,7 @@ input:not(:placeholder-shown) {
 
   .image {
     width: 250px;
-    margin: 100px 0 0 270px;
+    margin-right: 40px;
     padding-bottom: 20px;
   }
 
@@ -524,7 +576,24 @@ input:not(:placeholder-shown) {
   }
 
   .center {
-    margin-top: 50px;
+    margin-top: 20px;
+  }
+
+  .flip-card-front .day {
+    font-size: 1.6rem;
+    font-weight: 350;
+    margin-top: 70px;
+  }
+
+  .flip-card-back h6,
+  i {
+    font-weight: 300px;
+  }
+
+  .flip-card-back p {
+    font-weight: 500;
+    margin-top: 15px;
+    font-size: 0.9rem;
   }
 }
 
@@ -537,8 +606,7 @@ input:not(:placeholder-shown) {
 
   .image {
     width: 250px;
-    margin: 100px 0 0 470px;
-    padding-bottom: 20px;
+    margin-right: 100px;
   }
 
   .second {
@@ -570,5 +638,18 @@ input:not(:placeholder-shown) {
 
   i {
     font-size: 1.7rem;
+  }
+
+  .center {
+    margin-top: 20px;
+  }
+
+  .flip-card-front .day {
+    font-size: 2rem;
+    font-weight: 300;
+  }
+
+  .flip-card-back p {
+    margin-top: 15px;
   }
 }

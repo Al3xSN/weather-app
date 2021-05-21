@@ -25,7 +25,15 @@
           <!-- Main column -->
           <div class="col-12 col-sm-8">
             <h6 class="logo">the.weather</h6>
-            <img class="image" src="/resources/ballon.svg" alt="baloon image" />
+            <div class="row">
+              <div class="col">
+                <img
+                  class="image"
+                  src="/resources/ballon.svg"
+                  alt="baloon image"
+                />
+              </div>
+            </div>
 
             <div class="row weather-section">
               <div class="col-sm-4">
@@ -95,14 +103,15 @@
       </div>
     </header>
 
-    <img src="./resources/wave.svg" alt="" />
+    <img class="wave" src="./resources/wave.svg" alt="" />
 
+    <!-- Section -->
     <section id="future-weather">
       <div class="container">
         <div class="row">
           <h1>Days of week</h1>
 
-          <div class="col-12 col-sm-6 col-md-4 col-lg">
+          <div class="col-12 col-sm-6 col-md-4 col-lg col-xs-7 col-centered">
             <div class="box-week">
               <div class="flip-card">
                 <div class="flip-card-inner">
@@ -219,8 +228,9 @@
         </div>
       </div>
 
-      <img src="./resources/wave-reversed.svg" alt="" />
+      <img class="reversed-wave" src="./resources/wave-reversed.svg" alt="" />
     </section>
+
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
   </body>
 </html>
