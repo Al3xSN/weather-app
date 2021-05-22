@@ -355,7 +355,7 @@ input:not(:placeholder-shown) {
 
   .temperature {
     font-size: 4rem;
-    margin-left: 10px;
+    margin-left: 20px;
   }
 
   .second {
