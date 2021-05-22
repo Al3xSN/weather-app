@@ -703,6 +703,6 @@ input:not(:placeholder-shown) {
   }
 
   .flip-card-back p {
-    margin-top: 15px;
+    margin-top: 20px;
   }
 }
