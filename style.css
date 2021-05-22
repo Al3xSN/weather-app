@@ -333,6 +333,55 @@ input:not(:placeholder-shown) {
 @media only screen and (max-width: 600px) {
   .box {
     box-shadow: none;
+    height: inherit;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+    margin: 30px 0 0 0;
+    text-align: center;
+  }
+
+  .image {
+    width: 200px;
+    float: none;
+    display: block;
+    margin: 100px auto 0 auto;
+  }
+
+  .weather-section {
+    margin-top: 70px;
+  }
+
+  .temperature {
+    font-size: 4rem;
+    margin-left: 10px;
+  }
+
+  .second {
+    margin-bottom: 50px;
+  }
+
+  .type {
+    margin-top: -10px;
+  }
+
+  .time {
+    margin-top: -5px;
+  }
+
+  .city {
+    font-size: 1.5rem;
+    margin: 0 auto;
+  }
+
+  .history-search p:first-of-type {
+    margin-top: 20px;
+  }
+
+  .history-search p:last-child {
+    padding-bottom: 0px;
+    margin-bottom: 30px;
   }
 
   .wave {
@@ -358,7 +407,7 @@ input:not(:placeholder-shown) {
   }
 
   .flip-card-back p {
-    margin: 10px 0 0 10px;
+    margin: 8px 0 0 10px;
     font-size: 0.8rem;
   }
 
@@ -456,6 +505,10 @@ input:not(:placeholder-shown) {
 
   .box-week p {
     margin-top: -5px;
+  }
+
+  .flip-card-back p {
+    margin: 0 0 10px 10px;
   }
 }
 
