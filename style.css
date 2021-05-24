@@ -37,9 +37,9 @@ header {
 
 .box {
   height: 700px;
-  width: 1500px;
+  /* width: 1500px;
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: hidden; */
   border-radius: 10px;
   box-shadow: 5px 5px 10px 6px #00000036;
 }
@@ -116,7 +116,7 @@ i {
 
 form {
   position: relative;
-  width: 30rem;
+  max-width: 30rem;
 }
 
 input {
@@ -331,6 +331,10 @@ input:not(:placeholder-shown) {
 /*--------------MEDIA----------------*/
 /*-----------------------------------*/
 @media only screen and (max-width: 600px) {
+  header {
+    height: auto;
+  }
+
   .box {
     box-shadow: none;
     height: inherit;
