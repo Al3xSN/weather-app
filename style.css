@@ -261,7 +261,7 @@ input:not(:placeholder-shown) {
   transform-style: preserve-3d;
 }
 
-.flip-card:hover:active .flip-card-inner {
+.flip-card:hover:focus .flip-card-inner {
   transform: rotateY(180deg);
 }
 
