@@ -119,21 +119,20 @@
             <div class="row weather-section">
               <div class="col-sm-4">
                 <div class="first">
-                  <p class="temperature">26°</p>
+                  <p class="temperature"></p>
                 </div>
               </div>
               <div class="col-sm-4">
                 <div class="second">
-                  <p class="city">Varna</p>
-                  <p class="time">10:32 - Tuesday, 22 Oct 2021</p>
+                  <p class="city"></p>
+                  <p class="time"></p>
                 </div>
               </div>
               <div class="col-sm-4">
-                <div class="third">
-                  <i>
+                <div class="third weather-icon">
+                  <!-- <i>
                     <ion-icon name="sunny-outline"></ion-icon>
-                  </i>
-                  <p class="type">Sunny</p>
+                  </i> -->
                 </div>
               </div>
             </div>
@@ -142,7 +141,7 @@
           <!-- Sidebar -->
           <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
             <div class="search-bar">
-              <form onsubmit="event.preventDefault();" role="search">
+              <form role="search">
                 <input
                   id="search"
                   type="search"
@@ -164,10 +163,10 @@
             <div class="weather-details">
               <h6>Weather Details</h6>
               <div class="details">
-                <p>Cloudy <span>12%</span></p>
-                <p>Humidity <span>78%</span></p>
-                <p>Windy <span>1km/h</span></p>
-                <p>Chance of rain <span>0%</span></p>
+                <p class="details-type">Cloudy</p>
+                <p class="details-humidity">Humidity</p>
+                <p class="details-wind">Windy</p>
+                <p class="details-rain-change">Chance of rain</p>
               </div>
             </div>
           </div>
@@ -189,129 +188,16 @@
     <!-- Section -->
     <section id="future-weather">
       <div class="container">
-        <div class="row">
-          <h1>Days of week</h1>
-
-          <div class="col-12 col-sm-6 col-md-4 col-lg">
-            <div class="box-week">
-              <div class="flip-card">
-                <div class="flip-card-inner">
-                  <div class="flip-card-front">
-                    <h5 class="day">Monday</h5>
-                    <p>
-                      <ion-icon name="information-circle-outline"></ion-icon>
-                    </p>
-                  </div>
-                  <div class="flip-card-back">
-                    <h6>26°/15°</h6>
-                    <i><ion-icon name="sunny-outline"></ion-icon></i>
-                    <p>Cloudy <span>12%</span></p>
-                    <p>Humidity <span>78%</span></p>
-                    <p>Windy <span>1km/h</span></p>
-                    <p>Chance of rain <span>0%</span></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-sm-6 col-md-4 col-lg">
-            <div class="box-week">
-              <div class="flip-card">
-                <div class="flip-card-inner">
-                  <div class="flip-card-front">
-                    <h5 class="day">Tuesday</h5>
-                    <p>
-                      <ion-icon name="information-circle-outline"></ion-icon>
-                    </p>
-                  </div>
-                  <div class="flip-card-back">
-                    <h6>26°/15°</h6>
-                    <i><ion-icon name="cloudy-outline"></ion-icon></i>
-                    <p>Cloudy <span>12%</span></p>
-                    <p>Humidity <span>78%</span></p>
-                    <p>Windy <span>1km/h</span></p>
-                    <p>Chance of rain <span>0%</span></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-sm-6 col-md-4 col-lg">
-            <div class="box-week">
-              <div class="flip-card">
-                <div class="flip-card-inner">
-                  <div class="flip-card-front">
-                    <h5 class="day">Wednesday</h5>
-                    <p>
-                      <ion-icon name="information-circle-outline"></ion-icon>
-                    </p>
-                  </div>
-                  <div class="flip-card-back">
-                    <h6>26°/15°</h6>
-                    <i><ion-icon name="sunny-outline"></ion-icon></i>
-                    <p>Cloudy <span>12%</span></p>
-                    <p>Humidity <span>78%</span></p>
-                    <p>Windy <span>1km/h</span></p>
-                    <p>Chance of rain <span>0%</span></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-sm-6 col-md-4 col-lg">
-            <div class="box-week">
-              <div class="flip-card">
-                <div class="flip-card-inner">
-                  <div class="flip-card-front">
-                    <h5 class="day">Thursday</h5>
-                    <p>
-                      <ion-icon name="information-circle-outline"></ion-icon>
-                    </p>
-                  </div>
-                  <div class="flip-card-back">
-                    <h6>26°/15°</h6>
-                    <i><ion-icon name="partly-sunny-outline"></ion-icon></i>
-                    <p>Cloudy <span>12%</span></p>
-                    <p>Humidity <span>78%</span></p>
-                    <p>Windy <span>1km/h</span></p>
-                    <p>Chance of rain <span>0%</span></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-sm-6 col-md-4 col-lg">
-            <div class="box-week">
-              <div class="flip-card">
-                <div class="flip-card-inner">
-                  <div class="flip-card-front">
-                    <h5 class="day">Friday</h5>
-                    <p>
-                      <ion-icon name="information-circle-outline"></ion-icon>
-                    </p>
-                  </div>
-                  <div class="flip-card-back">
-                    <h6>26°/15°</h6>
-                    <i><ion-icon name="rainy-outline"></ion-icon></i>
-                    <p>Cloudy <span>12%</span></p>
-                    <p>Humidity <span>78%</span></p>
-                    <p>Windy <span>1km/h</span></p>
-                    <p>Chance of rain <span>0%</span></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <h1>Days of week</h1>
+        <div class="row weekdays-cards"></div>
       </div>
 
       <img class="reversed-wave" src="./resources/wave-reversed.svg" alt="" />
     </section>
 
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+
+    <!-- Scripts -->
+    <script type="module" src="./app.js"></script>
   </body>
 </html>
