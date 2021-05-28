@@ -82,7 +82,12 @@ i {
 
 .type {
   font-size: 0.8rem;
-  margin-top: 5px;
+  margin-top: 0px;
+}
+
+.max,
+.min {
+  margin-top: 10px;
 }
 
 .second {
@@ -90,7 +95,11 @@ i {
 }
 
 .third {
-  margin-top: -15px;
+  margin-top: -100px;
+}
+
+.weather-icon {
+  margin-top: -50px;
 }
 
 .button {
@@ -191,7 +200,7 @@ input:not(:placeholder-shown) {
 
 .details p {
   color: rgba(255, 255, 255, 0.7);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .details p:last-child {
@@ -361,12 +370,22 @@ input:not(:placeholder-shown) {
   }
 
   .temperature {
+    text-align: center;
     font-size: 4rem;
-    margin-left: 20px;
   }
 
   .second {
-    margin-bottom: 50px;
+    margin: 30px 0;
+  }
+
+  .max,
+  .min {
+    font-size: 1.5rem;
+    margin-top: -45px;
+  }
+
+  .third {
+    margin-top: 20px;
   }
 
   .type {
@@ -447,12 +466,18 @@ input:not(:placeholder-shown) {
   }
 
   .temperature {
-    font-size: 3rem;
+    font-size: 2.2rem;
     margin-top: 5px;
   }
 
+  .max,
+  .min {
+    margin-top: -32px;
+    font-size: 1.2rem;
+  }
+
   .city {
-    margin-top: 25px;
+    margin-top: 30px;
     font-size: 1rem;
   }
 
@@ -466,7 +491,7 @@ input:not(:placeholder-shown) {
   }
 
   .third {
-    margin-top: 17px;
+    margin-top: 15px;
   }
 
   .type {
@@ -537,30 +562,32 @@ input:not(:placeholder-shown) {
   }
 
   .temperature {
-    margin-top: 2px;
-    font-size: 4rem;
+    margin-top: -10px;
+    font-size: 2.8rem;
+  }
+
+  .max,
+  .min {
+    margin-top: 15px;
   }
 
   .city {
     font-size: 1.3rem;
+    margin-top: 5px;
   }
 
   .time {
     font-size: 0.7rem;
-    margin-top: -12px;
+    margin-top: -10px;
   }
 
   .type {
     font-size: 0.7rem;
-    margin-top: 1px;
-  }
-
-  .second {
-    margin-top: -38px;
+    margin-top: -5px;
   }
 
   .third {
-    margin-top: -17px;
+    margin-top: -28px;
   }
 
   body {
@@ -572,11 +599,11 @@ input:not(:placeholder-shown) {
   }
 
   .weather-details {
-    margin-top: 40px;
+    margin-top: 42px;
   }
 
   .center {
-    margin-top: 20px;
+    margin-top: 40px;
   }
 
   .flip-card-back p {
@@ -606,16 +633,23 @@ input:not(:placeholder-shown) {
     padding-bottom: 20px;
   }
 
-  .time {
-    margin-top: -5px;
+  .temperature {
+    margin-top: -10px;
   }
 
-  .second {
-    margin-top: -35px;
+  .max,
+  .min {
+    margin-top: 20px;
+    font-size: 1.4rem;
+  }
+
+  .city {
+    font-size: 1.7rem;
+    margin-top: 13px;
   }
 
   .third {
-    margin-top: -15px;
+    margin-top: -28px;
   }
 
   body {
@@ -631,7 +665,7 @@ input:not(:placeholder-shown) {
   }
 
   .center {
-    margin-top: 20px;
+    margin-top: 25px;
   }
 
   .flip-card-front .day {
@@ -664,21 +698,24 @@ input:not(:placeholder-shown) {
     margin-right: 100px;
   }
 
+  .max,
+  .min {
+    margin-top: 50px;
+    font-size: 2rem;
+  }
+
   .second {
     margin-top: -35px;
   }
 
-  .third {
-    margin-top: -15px;
-  }
-
   .temperature {
-    margin-top: 0;
+    margin-top: -20px;
     font-size: 5rem;
   }
 
   .city {
     font-size: 2rem;
+    margin-top: 27px;
   }
 
   .time {
@@ -688,7 +725,7 @@ input:not(:placeholder-shown) {
 
   .type {
     font-size: 0.8rem;
-    margin-top: 0;
+    margin-top: -1px;
   }
 
   i {
@@ -696,7 +733,7 @@ input:not(:placeholder-shown) {
   }
 
   .center {
-    margin-top: 20px;
+    margin-top: 5px;
   }
 
   .flip-card-front .day {
