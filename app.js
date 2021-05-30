@@ -29,9 +29,11 @@ function handleObserver(cards) {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("active");
-      } else {
-        entry.target.classList.remove("active");
       }
+      // Uncomment if you want cards to close when not viewed
+      //  else {
+      //   entry.target.classList.remove("active");
+      // }
     });
   }, options);
 
@@ -41,9 +43,15 @@ function handleObserver(cards) {
 }
 
 // Change current temperature
-function handleCurrentTemperature(data, currentTempNode) {
+function handleCurrentTemperature(data, currentTempNode, minmaxNode) {
   const temp = Math.round(data.current.temp);
+  const maxTemp = Math.round(data.daily[0].temp.max);
+  const minTemp = Math.round(data.daily[0].temp.min);
+
   currentTempNode.insertAdjacentHTML("afterbegin", `${temp}&#8451;`);
+  const minMaxSpan = document.createElement("span");
+  minMaxSpan.innerHTML = `${maxTemp}&deg; &sol; <span class="min">${minTemp}&deg;</span>`;
+  minmaxNode.appendChild(minMaxSpan);
 }
 
 // Change weather type and image
@@ -189,6 +197,7 @@ function handleFlipCards(data, weekDaysNode) {
 async function main() {
   // Get DOM nodes
   const currentTemp = document.querySelector(".temperature");
+  const feelsLike = document.querySelector(".max-min-temperature");
   const currentCity = document.querySelector(".city");
   const currentTimeDate = document.querySelector(".time");
   const currentWeatherIcon = document.querySelector(".weather-icon");
@@ -202,7 +211,7 @@ async function main() {
   const dataFromAPI = await getDataFromAPI();
 
   // Add current temp & feels like
-  handleCurrentTemperature(dataFromAPI, currentTemp);
+  handleCurrentTemperature(dataFromAPI, currentTemp, feelsLike);
 
   // Add current city data
   handleCity(dataFromAPI, currentCity);
