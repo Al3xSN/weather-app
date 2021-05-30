@@ -1,6 +1,5 @@
-import { API_KEY } from "./env.js";
-
 // Varna lat & long
+const API_KEY = "225e835d05867cec298d899420be0cdc";
 const LAT = 43.2167;
 const LON = 27.9167;
 const CITY = "Varna";
