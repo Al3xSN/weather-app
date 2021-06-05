@@ -146,23 +146,21 @@
           <!-- Sidebar -->
           <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
             <div class="search-bar">
-              <form role="search">
+              <form>
                 <input
                   id="search"
                   type="search"
-                  placeholder="Search..."
                   autofocus
-                  required
+                  autocomplete="off"
+                  placeholder="Search..."
+                  list="search-results"
                 />
+                <datalist id="search-results"></datalist>
               </form>
             </div>
 
             <div class="history-search">
               <h6>History</h6>
-              <p>Varna</p>
-              <p>Sofia</p>
-              <p>Plovdiv</p>
-              <p>Veliko Tarnovo</p>
             </div>
 
             <div class="weather-details">
