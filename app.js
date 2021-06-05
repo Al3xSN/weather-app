@@ -1,14 +1,26 @@
 // Varna lat & long
 const API_KEY = "225e835d05867cec298d899420be0cdc";
-const LAT = 43.2167;
-const LON = 27.9167;
-const CITY = "Varna";
+const SEARCH_LIMIT = 3;
 
-// Get API Data
-async function getDataFromAPI() {
+// Get Location from API
+async function getLocationFromAPI(city) {
   try {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${LAT}&lon=${LON}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`
+      `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=${SEARCH_LIMIT}&appid=${API_KEY}`
+    );
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(`Error: ${error}`);
+  }
+}
+
+// Get API Data
+async function getDataFromAPI(lat = null, lon = null) {
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`
     );
 
     if (!response.ok) throw new Error("Something went wrong!");
@@ -38,6 +50,16 @@ function handleObserver(cards) {
 
   cards.forEach((card) => {
     observer.observe(card);
+  });
+}
+
+// Change locations in the select
+function handleLocations(data, searchResultsNode) {
+  data.forEach((result) => {
+    const cityOption = document.createElement("option");
+    cityOption.textContent = `${result.name} - ${result.country}`;
+
+    searchResultsNode.appendChild(cityOption);
   });
 }
 
@@ -89,7 +111,7 @@ function handleWeatherDetails(
 // Change current city
 function handleCity(data, currentCity) {
   const citySpan = document.createElement("span");
-  citySpan.textContent = CITY;
+  citySpan.textContent = data;
 
   currentCity.appendChild(citySpan);
 }
@@ -192,28 +214,108 @@ function handleFlipCards(data, weekDaysNode) {
   });
 }
 
-// Main controller
-async function main() {
-  // Get DOM nodes
-  const currentTemp = document.querySelector(".temperature");
-  const feelsLike = document.querySelector(".max-min-temperature");
-  const currentCity = document.querySelector(".city");
-  const currentTimeDate = document.querySelector(".time");
-  const currentWeatherIcon = document.querySelector(".weather-icon");
-  const currentWeatherType = document.querySelector(".details-type");
-  const currentHumidity = document.querySelector(".details-humidity");
-  const currentWind = document.querySelector(".details-wind");
-  const currentRainChance = document.querySelector(".details-rain-change");
-  const weekdaysCards = document.querySelector(".weekdays-cards");
+function getPrevSearchesFromLS() {
+  return JSON.parse(localStorage.getItem("previous_searches")) || [];
+}
 
-  // Create a call to the API
-  const dataFromAPI = await getDataFromAPI();
+function addToLocalStorage(city) {
+  const prevSearches = getPrevSearchesFromLS();
+
+  !prevSearches.includes(city) && prevSearches.splice(0, 0, city);
+
+  localStorage.setItem("previous_searches", JSON.stringify(prevSearches));
+}
+
+function checkLSForPrevSearch(prevSearchesNode) {
+  const prevSearches = getPrevSearchesFromLS();
+  if (!prevSearches) {
+    console.log("No prev searches found");
+    return false;
+  }
+
+  const searches = prevSearches.map((search) => {
+    const searchItem = document.createElement("p");
+    searchItem.textContent = search;
+
+    return searchItem;
+  });
+
+  searches.forEach((search) => prevSearchesNode.appendChild(search));
+
+  return prevSearches[0];
+}
+
+function debounce(func, timeout) {
+  let timer;
+
+  return (...args) => {
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      func(args);
+    }, timeout);
+  };
+}
+
+function handleInputEventListeners() {
+  let lookupFromAPI = [];
+
+  // Get DOM Nodes
+  const searchInput = document.querySelector("#search");
+  const searchResults = document.querySelector("#search-results");
+
+  // Add Event Listeners
+  searchInput.addEventListener(
+    "keyup",
+    debounce(async () => {
+      if (searchInput.value) {
+        // Location lookup call to API
+        lookupFromAPI = await getLocationFromAPI(searchInput.value);
+        handleLocations(lookupFromAPI, searchResults);
+      }
+    }, 800)
+  );
+
+  searchInput.addEventListener("change", async () => {
+    const [city, country] = searchInput.value.split(" - ");
+
+    const filteredCity = lookupFromAPI.filter((result) => {
+      return result.name === city && result.country == country;
+    });
+
+    // Create a call to the API
+    const dataFromAPI = await getDataFromAPI(
+      filteredCity[0].lat,
+      filteredCity[0].lon
+    );
+
+    clearNodesData();
+    populateData(dataFromAPI, city);
+
+    addToLocalStorage(city);
+  });
+}
+
+function populateData(dataFromAPI, city) {
+  // Get DOM nodes
+  const [
+    currentTemp,
+    feelsLike,
+    currentCity,
+    currentTimeDate,
+    currentWeatherIcon,
+    currentWeatherType,
+    currentHumidity,
+    currentWind,
+    currentRainChance,
+    weekdaysCards,
+  ] = getDomElements();
 
   // Add current temp & feels like
   handleCurrentTemperature(dataFromAPI, currentTemp, feelsLike);
 
   // Add current city data
-  handleCity(dataFromAPI, currentCity);
+  handleCity(city, currentCity);
 
   // Add current data
   handleTimeAndDate(currentTimeDate);
@@ -235,6 +337,59 @@ async function main() {
   // Attach observer
   const flipCards = document.querySelectorAll(".flip-card");
   handleObserver(flipCards);
+}
+
+function getDomElements() {
+  const currentTemp = document.querySelector(".temperature");
+  const feelsLike = document.querySelector(".max-min-temperature");
+  const currentCity = document.querySelector(".city");
+  const currentTimeDate = document.querySelector(".time");
+  const currentWeatherIcon = document.querySelector(".weather-icon");
+  const currentWeatherType = document.querySelector(".details-type");
+  const currentHumidity = document.querySelector(".details-humidity");
+  const currentWind = document.querySelector(".details-wind");
+  const currentRainChance = document.querySelector(".details-rain-change");
+  const weekdaysCards = document.querySelector(".weekdays-cards");
+
+  return [
+    currentTemp,
+    feelsLike,
+    currentCity,
+    currentTimeDate,
+    currentWeatherIcon,
+    currentWeatherType,
+    currentHumidity,
+    currentWind,
+    currentRainChance,
+    weekdaysCards,
+  ];
+}
+
+function clearNodesData() {
+  const domElements = getDomElements();
+  domElements.forEach((element) => (element.textContent = ""));
+}
+
+// Main controller
+async function main() {
+  // Get DOM nodes
+  const prevSearches = document.querySelector(".history-search");
+
+  const prevSearchCheck = checkLSForPrevSearch(prevSearches);
+
+  if (prevSearchCheck) {
+    // Location lookup call to API
+    const lookupFromAPI = await getLocationFromAPI(prevSearchCheck);
+    // // Create a call to the API
+    const dataFromAPI = await getDataFromAPI(
+      lookupFromAPI[0].lat,
+      lookupFromAPI[0].lon
+    );
+
+    populateData(dataFromAPI, prevSearchCheck);
+  }
+
+  handleInputEventListeners();
 }
 
 main();
