@@ -88,24 +88,36 @@ function handleWeatherType(data, imgNode) {
   imgNode.appendChild(typeSpan);
 }
 
-// Change current weather details
-function handleWeatherDetails(
-  data,
-  [currentWeatherType, currentHumidity, currentWind, currentRainChance]
-) {
-  const strippedData = data.daily[0];
-  const details = {
-    0: [currentWeatherType, `${strippedData.clouds} %`],
-    1: [currentHumidity, `${strippedData.humidity} %`],
-    2: [currentWind, `${strippedData.wind_speed} m/s`],
-    3: [currentRainChance, `${Math.round(strippedData.pop * 100)} %`],
-  };
+// Add previous searches
+function handlePreviousSearches(prevSearchCities, prevSearchesNode) {
+  const searches = prevSearchCities.map((city) => {
+    const searchItem = document.createElement("p");
+    searchItem.textContent = city;
 
-  for (const key in details) {
-    const detailSpan = document.createElement("span");
-    detailSpan.textContent = details[key][1];
-    details[key][0].appendChild(detailSpan);
-  }
+    return searchItem;
+  });
+
+  searches.forEach((search) => prevSearchesNode.appendChild(search));
+}
+
+// Change current weather details
+function handleWeatherDetails(data, weatherDetailsNode) {
+  const strippedData = data.daily[0];
+  const detailsHTML = `<h6>Weather Details</h6>
+  <div class="details">
+    <p class="details-type">Clouds: <span>${strippedData.clouds} %</span></p>
+    <p class="details-humidity">Humidity: <span>${
+      strippedData.humidity
+    } %</span></p>
+    <p class="details-wind">Wind: <span>${strippedData.wind_speed} %</span></p>
+    <p class="details-rain-change">Chance of rain: <span>${Math.round(
+      strippedData.pop * 100
+    )} %</span></p>
+  </div>`;
+
+  const detailsWrapper = document.createElement("div");
+  detailsWrapper.innerHTML = detailsHTML;
+  weatherDetailsNode.appendChild(detailsWrapper);
 }
 
 // Change current city
@@ -226,23 +238,14 @@ function addToLocalStorage(city) {
   localStorage.setItem("previous_searches", JSON.stringify(prevSearches));
 }
 
-function checkLSForPrevSearch(prevSearchesNode) {
+function checkLSForPrevSearch() {
   const prevSearches = getPrevSearchesFromLS();
   if (!prevSearches) {
     console.log("No prev searches found");
     return false;
   }
 
-  const searches = prevSearches.map((search) => {
-    const searchItem = document.createElement("p");
-    searchItem.textContent = search;
-
-    return searchItem;
-  });
-
-  searches.forEach((search) => prevSearchesNode.appendChild(search));
-
-  return prevSearches[0];
+  return prevSearches;
 }
 
 function debounce(func, timeout) {
@@ -290,13 +293,16 @@ function handleInputEventListeners() {
     );
 
     clearNodesData();
-    populateData(dataFromAPI, city);
 
+    const prevSearchCities = checkLSForPrevSearch();
+    prevSearchCities.splice(0, 0, city);
+
+    populateData(dataFromAPI, prevSearchCities);
     addToLocalStorage(city);
   });
 }
 
-function populateData(dataFromAPI, city) {
+function populateData(dataFromAPI, prevSearchCities) {
   // Get DOM nodes
   const [
     currentTemp,
@@ -304,18 +310,16 @@ function populateData(dataFromAPI, city) {
     currentCity,
     currentTimeDate,
     currentWeatherIcon,
-    currentWeatherType,
-    currentHumidity,
-    currentWind,
-    currentRainChance,
     weekdaysCards,
+    weatherDetails,
+    prevSearches,
   ] = getDomElements();
 
   // Add current temp & feels like
   handleCurrentTemperature(dataFromAPI, currentTemp, feelsLike);
 
   // Add current city data
-  handleCity(city, currentCity);
+  handleCity(prevSearchCities[0], currentCity);
 
   // Add current data
   handleTimeAndDate(currentTimeDate);
@@ -323,13 +327,11 @@ function populateData(dataFromAPI, city) {
   // Add weather icon
   handleWeatherType(dataFromAPI, currentWeatherIcon);
 
+  // Add previous searches
+  handlePreviousSearches(prevSearchCities, prevSearches);
+
   // Add data to Weather Details
-  handleWeatherDetails(dataFromAPI, [
-    currentWeatherType,
-    currentHumidity,
-    currentWind,
-    currentRainChance,
-  ]);
+  handleWeatherDetails(dataFromAPI, weatherDetails);
 
   //  Add data to flip cards
   handleFlipCards(dataFromAPI, weekdaysCards);
@@ -345,11 +347,9 @@ function getDomElements() {
   const currentCity = document.querySelector(".city");
   const currentTimeDate = document.querySelector(".time");
   const currentWeatherIcon = document.querySelector(".weather-icon");
-  const currentWeatherType = document.querySelector(".details-type");
-  const currentHumidity = document.querySelector(".details-humidity");
-  const currentWind = document.querySelector(".details-wind");
-  const currentRainChance = document.querySelector(".details-rain-change");
   const weekdaysCards = document.querySelector(".weekdays-cards");
+  const weatherDetails = document.querySelector(".weather-details");
+  const prevSearches = document.querySelector(".history-search");
 
   return [
     currentTemp,
@@ -357,11 +357,9 @@ function getDomElements() {
     currentCity,
     currentTimeDate,
     currentWeatherIcon,
-    currentWeatherType,
-    currentHumidity,
-    currentWind,
-    currentRainChance,
     weekdaysCards,
+    weatherDetails,
+    prevSearches,
   ];
 }
 
@@ -372,21 +370,18 @@ function clearNodesData() {
 
 // Main controller
 async function main() {
-  // Get DOM nodes
-  const prevSearches = document.querySelector(".history-search");
+  const prevSearchCities = checkLSForPrevSearch();
 
-  const prevSearchCheck = checkLSForPrevSearch(prevSearches);
-
-  if (prevSearchCheck) {
+  if (prevSearchCities.length > 0) {
     // Location lookup call to API
-    const lookupFromAPI = await getLocationFromAPI(prevSearchCheck);
+    const lookupFromAPI = await getLocationFromAPI(prevSearchCities[0]);
     // // Create a call to the API
     const dataFromAPI = await getDataFromAPI(
       lookupFromAPI[0].lat,
       lookupFromAPI[0].lon
     );
 
-    populateData(dataFromAPI, prevSearchCheck);
+    populateData(dataFromAPI, prevSearchCities);
   }
 
   handleInputEventListeners();
