@@ -97,6 +97,9 @@ function handlePreviousSearches(prevSearchCities, prevSearchesNode) {
     return searchItem;
   });
 
+  const subHeading = document.createElement("h6");
+  subHeading.textContent = "History";
+  prevSearchesNode.appendChild(subHeading);
   searches.forEach((search) => prevSearchesNode.appendChild(search));
 }
 
